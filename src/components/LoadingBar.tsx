@@ -9,9 +9,9 @@ const LoadingBar: React.FC<LoadingBarProps> = ({ option }) => {
     const barWidth = `${option.percentage}%`;
 
     return (
-        <div className="flex justify-start items-center w-[266px] relative overflow-hidden gap-2 p-2 rounded-xl bg-[#c2d9fa] border-[0.5px] border-[#2d82eb]">
+        <div className="flex justify-start items-center w-[300px] relative overflow-hidden gap-2 p-2 rounded-full bg-[#c2d9fa] border-[0.5px] border-[#2d82eb]">
             <div
-                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 h-[33px] absolute left-0 top-0 gap-2"
+                className="flex flex-col justify-start items-start h-full absolute left-0 top-0 gap-2"
                 style={{ width: barWidth }}
             >
                 <svg
@@ -26,8 +26,8 @@ const LoadingBar: React.FC<LoadingBarProps> = ({ option }) => {
                     <path d="M0 0.691895H186V33.6919H0V0.691895Z" fill={option.color} />
                 </svg>
             </div>
-            <p className="flex-grow w-[214px] text-sm text-left text-white z-10">{option.text}</p>
-            <p className="flex-grow-0 flex-shrink-0 text-sm text-right text-[#0d479b]">{option.percentage}%</p>
+            <p className="w-[214px] text-sm text-left text-white z-10">{option.text}</p>
+            <p className="text-sm text-right text-[#0d479b]">{option.percentage}%</p>
         </div>
     );
 };
