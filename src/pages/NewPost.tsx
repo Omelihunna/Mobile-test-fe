@@ -1,9 +1,13 @@
 import React from "react";
-import { IPost, testposts } from "../constants/constants";
+import { IPost } from "../constants/constants";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
+import { usePostContext } from "../providers/PostContext";
+import { useNavigate } from "react-router-dom";
 
 const NewPost: React.FC = () => {
+    const { addPost } = usePostContext()
+    const navigate = useNavigate();
     const initialValues: IPost = {
         username: "Omzy",
         text: "",
@@ -12,8 +16,9 @@ const NewPost: React.FC = () => {
     }
 
     const handleSubmit = (values: IPost) => {
-        testposts.push(values)
-        console.log(testposts)
+        addPost(values)
+        navigate(`/`, { replace: true });
+        return console.log("Added Post Successfully")
     }
 
     const NewPostValidationSchema = Yup.object().shape({

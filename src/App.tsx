@@ -1,25 +1,14 @@
-// import { useState } from 'react'
 import './App.css'
-// import Test from './pages/Test'
-import TopNav from './components/TopNav'
+import { Route, Routes } from 'react-router-dom'
 import Feed from './pages/Feed'
 import NewPost from './pages/NewPost'
 
 const App = () => {
-  // const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div className='flex flex-row gap-40'>
-        <div>
-          <TopNav />
-          <Feed />
-        </div>
-        <div>
-          <NewPost />
-        </div>
-      </div>
-    </>
+  return (    
+    <Routes>
+      <Route path={"/"} element={<Feed />} />
+      <Route path={"/new"} element={<NewPost />} />
+    </Routes>
   )
 }
 

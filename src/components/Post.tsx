@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GroupIcon from "../assets/group-icon.svg"
 import LikeIcon from "../assets/like-icon.svg"
 import ForwardIcon from "../assets/forward-icon.svg"
+import avatar from "../assets/avatar.png"
 import { IPost } from "../constants/constants";
 
 interface PostProps {
@@ -14,12 +15,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
     const addLike = () => {
         setlikeCount(likeCount + 1)
-        post.likeCount ++
+        post.likeCount++
     }
 
     const forward = () => {
         setforwardCount(forwardCount + 1)
-        post.forwardCount ++
+        post.forwardCount++
     }
 
     return (
@@ -38,7 +39,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                             </div>
                             <div className="flex justify-start items-start self-stretch relative gap-6 px-4">
                                 <div className="flex justify-start items-start flex-grow relative gap-4">
-                                    <div className="w-8 h-8 relative rounded-[32px] bg-[#f4ce9b]" />
+                                <img className="w-6 h- rounded-[32px] " src={avatar}/>
                                     <div className="flex flex-col justify-start items-center flex-grow gap-2">
                                         <div className="flex justify-start items-center self-stretch relative gap-2">
                                             <p className="text-sm font-medium text-left text-[#545454]">
