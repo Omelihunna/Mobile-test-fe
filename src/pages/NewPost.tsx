@@ -32,7 +32,7 @@ const NewPost: React.FC = () => {
 
     return (
         <section className="h-screen relative">
-            <TopNav />
+            {/* <TopNav /> */}
             <div className="mt-16">
                 <Formik
                     initialValues={initialValues}
