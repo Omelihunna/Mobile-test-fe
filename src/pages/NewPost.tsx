@@ -4,6 +4,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import { usePostContext } from "../providers/PostContext";
 import { useNavigate } from "react-router-dom";
+import TopNav from "../components/TopNav";
 
 const NewPost: React.FC = () => {
     const { addPost } = usePostContext()
@@ -30,6 +31,7 @@ const NewPost: React.FC = () => {
 
     return (
         <section className="h-screen relative">
+            <TopNav />
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
