@@ -3,19 +3,18 @@ import GroupIcon from "../assets/group-icon.svg"
 import LikeIcon from "../assets/like-icon.svg"
 import ForwardIcon from "../assets/forward-icon.svg"
 import avatar from "../assets/avatar.png"
-import LoadingBar from "./LoadingBar";
+import LoadingBar, { MinorityLoader } from "./LoadingBar";
 // import { IPost } from "../constants/constants";
 
-export interface PollOption {
+export interface IPollOption {
     text: string;
     percentage: number;
-    color: string;
 }
 
 interface IPollPost {
     username: string;
     text: string;
-    options: PollOption[];
+    options: IPollOption[];
     likeCount: number;
     forwardCount: number;
 }
@@ -29,17 +28,14 @@ const testpollpost: IPollPost = {
         {
             text: "Yes, definitely",
             percentage: 15,
-            color: "blue"
         },
         {
             text: "No not at all",
             percentage: 50,
-            color: "#87CEEB"
         },
         {
             text: "No, I haven't thought about it",
             percentage: 35,
-            color: "#87CEEB"
         }
     ],
 }
@@ -56,7 +52,13 @@ const PollPost: React.FC = () => {
         setforwardCount(forwardCount + 1)
         testpollpost.forwardCount++
     }
-    
+
+    const getHighestOption = (pollPost: IPollPost): IPollOption => {
+        return pollPost.options.reduce((maxOption, currentOption) => {
+            return currentOption.percentage > maxOption.percentage ? currentOption : maxOption;
+        })
+    }
+
     return (
         <section id="post" className="max-w-screen-sm">
             <div className="flex flex-col justify-start items-start self-stretch relative gap-4">
@@ -90,7 +92,9 @@ const PollPost: React.FC = () => {
                                         </div>
                                         <div className="flex justify-center flex-col gap-1">
                                             {testpollpost.options.map((option) => (
-                                                <LoadingBar option={option} />
+                                                option === getHighestOption(testpollpost) ?
+                                                    <LoadingBar key={option.text} option={option} /> :
+                                                    <MinorityLoader key={option.text} option={option} />
                                             ))}
                                         </div>
                                     </div>
